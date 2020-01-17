@@ -23,7 +23,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -32,11 +31,14 @@ import org.springframework.context.annotation.Configuration;
 import java.net.InetSocketAddress;
 
 @Configuration
-@RequiredArgsConstructor
 @EnableConfigurationProperties(NettyProperties.class)
 public class NettyConfiguration {
 
     private final NettyProperties nettyProperties;
+
+    public NettyConfiguration(NettyProperties nettyProperties) {
+        this.nettyProperties = nettyProperties;
+    }
 
     @Bean(name = "serverBootstrap")
     public ServerBootstrap bootstrap() {

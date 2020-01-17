@@ -19,8 +19,8 @@ import com.zbum.example.socket.server.netty.ChannelRepository;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
@@ -30,12 +30,16 @@ import org.springframework.util.Assert;
  * @author Jibeom Jung
  */
 @Component
-@Slf4j
-@RequiredArgsConstructor
 @ChannelHandler.Sharable
 public class SimpleChatServerHandler extends ChannelInboundHandlerAdapter {
 
     private final ChannelRepository channelRepository;
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
+    public SimpleChatServerHandler(ChannelRepository channelRepository) {
+        this.channelRepository = channelRepository;
+    }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {

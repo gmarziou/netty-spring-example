@@ -17,8 +17,6 @@ package com.zbum.example.socket.server.netty;
 
 import io.netty.channel.Channel;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 

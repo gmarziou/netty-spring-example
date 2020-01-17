@@ -1,7 +1,6 @@
 package com.zbum.example.socket.server;
 
 import com.zbum.example.socket.server.netty.TCPServer;
-import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -13,9 +12,12 @@ import org.springframework.context.annotation.Bean;
  *
  * @author Jibeom Jung
  */
-@RequiredArgsConstructor
 @SpringBootApplication
 public class MantyChatApplication {
+
+    public MantyChatApplication(TCPServer tcpServer) {
+        this.tcpServer = tcpServer;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(MantyChatApplication.class, args);

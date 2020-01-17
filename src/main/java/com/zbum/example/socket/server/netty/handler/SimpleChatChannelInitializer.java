@@ -22,7 +22,6 @@ import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.Delimiters;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
@@ -31,13 +30,16 @@ import org.springframework.stereotype.Component;
  * @author Jibeom Jung
  */
 @Component
-@RequiredArgsConstructor
 public class SimpleChatChannelInitializer extends ChannelInitializer<SocketChannel> {
 
     private final StringDecoder DECODER = new StringDecoder();
     private final StringEncoder ENCODER = new StringEncoder();
 
     private final SimpleChatServerHandler simpleChatServerHandler;
+
+    public SimpleChatChannelInitializer(SimpleChatServerHandler simpleChatServerHandler) {
+        this.simpleChatServerHandler = simpleChatServerHandler;
+    }
 
     @Override
     protected void initChannel(SocketChannel socketChannel) {
